@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Escape from Harrenhal</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="start-screen" id="start-screen">
-        <h1 class="title">Escape from Harrenhal</h1>
-        <button class="enter-button">Enter the Realm</button>
-    </div>
+<div class="character-creation hidden" id="character-creation">
+    <h2>Create Your Character</h2>
+    <label for="character-name">Name:</label>
+    <input type="text" id="character-name" placeholder="Your name...">
 
-    <div class="game-container hidden" id="game-container">
-        <div class="game-log" id="game-log"></div>
-        <div class="input-container">
-            <input type="text" id="command-input" placeholder="Enter your command..." autofocus>
-            <button id="submit-command">Send</button>
-        </div>
-    </div>
+    <label for="character-race">Race:</label>
+    <select id="character-race">
+        <option>Human</option>
+        <option>Northman</option>
+        <option>Ironborn</option>
+        <option>Dornish</option>
+    </select>
 
-    <script src="js/script.js"></script>
-</body>
-</html>
+    <label for="character-class">Class:</label>
+    <select id="character-class">
+        <option>Warrior</option>
+        <option>Rogue</option>
+        <option>Hunter</option>
+        <option>Bard</option>
+    </select>
+
+    <label for="character-background">Background:</label>
+    <select id="character-background">
+        <option>Soldier</option>
+        <option>Outlaw</option>
+        <option>Merchant</option>
+        <option>Peasant</option>
+    </select>
+
+    <button id="create-character">Start Adventure</button>
+</div>

@@ -51,3 +51,21 @@
 #submit-command:hover {
     background: #777;
 }
+
+
+.character-creation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.character-creation label, .character-creation select, .character-creation input {
+    margin: 5px;
+    color: #f0e68c;
+    background-color: #333;
+    border: 2px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+}
+

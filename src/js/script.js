@@ -8,12 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sound effect for entering the realm
     const swordSound = new Audio("assets/sounds/sword-slash.mp3");
 
+    // Game state management
+    let currentScene = "awakening";
+
     // Transition to the game screen
     document.querySelector(".enter-button").addEventListener("click", () => {
         swordSound.play();
         startScreen.classList.add("hidden");
         gameContainer.classList.remove("hidden");
-        logMessage("You awaken in a dark cell. The air is heavy with dread...");
+        changeScene(currentScene); // Start the first scene
     });
 
     // Log messages to the game log
@@ -24,23 +27,50 @@ document.addEventListener("DOMContentLoaded", () => {
         gameLog.scrollTop = gameLog.scrollHeight; // Auto-scroll
     }
 
+    // Change the current scene and display the description
+    function changeScene(sceneName) {
+        const scene = scenes[sceneName];
+        if (scene) {
+            swordSound.play();
+            logMessage(scene.description);
+            currentScene = sceneName;
+        } else {
+            logMessage("You feel disoriented, unsure of what just happened.");
+        }
+    }
+
+    // Handle player choices within a scene
+    function handleChoice(command) {
+        const scene = scenes[currentScene];
+        if (scene && scene.choices[command]) {
+            logMessage(scene.choices[command]);
+
+            // Move to the next scene if defined
+            if (scene.nextScene) {
+                setTimeout(() => changeScene(scene.nextScene), 1000);
+            }
+        } else {
+            logMessage("You hesitate, unsure of what to do.");
+        }
+    }
+
     // Handle player commands
     function handleCommand(command) {
         logMessage(`> ${command}`);
 
-        // Basic command handling
+        // Try to handle as a scene-specific command
+        if (currentScene && scenes[currentScene]) {
+            handleChoice(command);
+            return;
+        }
+
+        // General commands if not in a scene
         switch (command.toLowerCase()) {
-            case "look":
-                logMessage("You see cold stone walls and a flickering torch outside your cell.");
-                break;
-            case "shout":
-                logMessage("Your voice echoes, but no one responds.");
-                break;
             case "help":
-                logMessage("Commands: look, shout, help");
+                logMessage("Commands: look, listen, shout, wait, hide, inspect cell door, prepare to fight, call for help");
                 break;
             default:
-                logMessage("You mutter to yourself, unsure of what to do.");
+                logMessage("Your thoughts are scattered. Try something else.");
         }
         commandInput.value = "";
     }
@@ -49,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function submit() {
         const command = commandInput.value.trim();
         if (command) handleCommand(command);
+        commandInput.value = "";
     }
 
     submitCommand.addEventListener("click", submit);
