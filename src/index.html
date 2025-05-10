@@ -1,31 +1,86 @@
-<div class="character-creation hidden" id="character-creation">
-    <h2>Create Your Character</h2>
-    <label for="character-name">Name:</label>
-    <input type="text" id="character-name" placeholder="Your name...">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Escape from Harrenhal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Cinematic Start Screen -->
+    <div class="start-screen" id="start-screen">
+        <h1 class="title">Escape from Harrenhal</h1>
+        <p id="resume-message" class="hidden">Welcome back, <span id="loaded-name">-</span>. Continue your journey?</p>
+        <button class="enter-button">Enter the Realm</button>
+    </div>
 
-    <label for="character-race">Race:</label>
-    <select id="character-race">
-        <option>Human</option>
-        <option>Northman</option>
-        <option>Ironborn</option>
-        <option>Dornish</option>
-    </select>
+    <!-- Character Creation Screen -->
+    <div class="character-creation hidden" id="character-creation">
+        <h2>Create Your Character</h2>
+        <p class="creation-description">Forge your path in Westeros. Choose your heritage, skills, and past.</p>
 
-    <label for="character-class">Class:</label>
-    <select id="character-class">
-        <option>Warrior</option>
-        <option>Rogue</option>
-        <option>Hunter</option>
-        <option>Bard</option>
-    </select>
+        <!-- Character Name -->
+        <div class="character-input-group">
+            <label for="character-name">Name:</label>
+            <input type="text" id="character-name" placeholder="Your name..." maxlength="20">
+        </div>
 
-    <label for="character-background">Background:</label>
-    <select id="character-background">
-        <option>Soldier</option>
-        <option>Outlaw</option>
-        <option>Merchant</option>
-        <option>Peasant</option>
-    </select>
+        <!-- Race Selection -->
+        <div class="character-input-group">
+            <label for="character-race">Race:</label>
+            <select id="character-race">
+                <option>Human</option>
+                <option>Northman</option>
+                <option>Ironborn</option>
+                <option>Dornish</option>
+            </select>
+        </div>
 
-    <button id="create-character">Start Adventure</button>
-</div>
+        <!-- Class Selection -->
+        <div class="character-input-group">
+            <label for="character-class">Class:</label>
+            <select id="character-class">
+                <option>Warrior</option>
+                <option>Rogue</option>
+                <option>Hunter</option>
+                <option>Bard</option>
+            </select>
+        </div>
+
+        <!-- Background Selection -->
+        <div class="character-input-group">
+            <label for="character-background">Background:</label>
+            <select id="character-background">
+                <option>Soldier</option>
+                <option>Outlaw</option>
+                <option>Merchant</option>
+                <option>Peasant</option>
+            </select>
+        </div>
+
+        <!-- Character Summary -->
+        <div class="character-summary" id="character-summary">
+            <h3>Character Summary</h3>
+            <p>Name: <span id="summary-name">-</span></p>
+            <p>Race: <span id="summary-race">-</span></p>
+            <p>Class: <span id="summary-class">-</span></p>
+            <p>Background: <span id="summary-background">-</span></p>
+        </div>
+
+        <!-- Start Adventure Button -->
+        <button id="create-character">Start Adventure</button>
+    </div>
+
+    <!-- Main Game Container -->
+    <div class="game-container hidden" id="game-container">
+        <div class="game-log" id="game-log"></div>
+        <div class="input-container">
+            <input type="text" id="command-input" placeholder="Enter your command..." autofocus>
+            <button id="submit-command">Send</button>
+        </div>
+    </div>
+
+    <!-- Script files -->
+    <script src="js/scene-engine.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
