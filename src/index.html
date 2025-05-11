@@ -1,95 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Escape from Harrenhal</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Imports -->
+    <style>
+        @font-face {
+            font-family: 'GameOfThrones';
+            src: url('assets/fonts/TrajanPro-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Medieval';
+            src: url('assets/fonts/Cardo-Regular.ttf') format('truetype');
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Audio for Title Theme -->
+    <audio id="title-theme" loop>
+        <source src="assets/music/title-theme.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Cinematic Start Screen -->
     <div class="start-screen" id="start-screen">
-        <h1 class="title">Escape from Harrenhal</h1>
+        <h1 class="title" style="font-family: 'GameOfThrones', serif;">Escape from Harrenhal</h1>
         <p id="resume-message" class="hidden">Welcome back, <span id="loaded-name">-</span>. Continue your journey?</p>
-        <button class="enter-button">Enter the Realm</button>
+        <button class="enter-button" aria-label="Enter the Realm">Enter the Realm</button>
     </div>
 
     <!-- Character Creation Screen -->
     <div class="character-creation hidden" id="character-creation">
-        <h2>Create Your Character</h2>
-        <p class="creation-description">Forge your path in Westeros. Choose your heritage, skills, and past.</p>
+        <h2 style="font-family: 'GameOfThrones', serif;">Create Your Character</h2>
+        <p class="creation-description" style="font-family: 'Medieval', serif;">Forge your path in Westeros. Choose your heritage, skills, and past.</p>
 
         <!-- Character Name -->
         <div class="character-input-group">
             <label for="character-name">Name:</label>
-            <input type="text" id="character-name" placeholder="Your name..." maxlength="20">
+            <input type="text" id="character-name" placeholder="Your name..." maxlength="20" aria-label="Character Name">
         </div>
 
         <!-- Race Selection -->
         <div class="character-input-group">
             <label for="character-race">Race:</label>
-            <select id="character-race">
-               <option>Andal</option>
-<option>Crownlander</option>
-<option>Dornish</option>
-<option>Firstman</option>
-<option>Ironborn</option>
-<option>Northman</option>
-<option>Reachman</option>
-<option>Rhynor</option>
-<option>Riverman</option>
-<option>Stormlander</option>
-<option>Valeman</option>
-<option>Westerman</option>
-<option>Wildling</option>
+            <select id="character-race" aria-label="Character Race">
+                <option>Andal</option>
+                <option>Crownlander</option>
+                <option>Dornish</option>
+                <option>Firstman</option>
+                <option>Ironborn</option>
+                <option>Northman</option>
+                <option>Reachman</option>
+                <option>Rhynor</option>
+                <option>Riverman</option>
+                <option>Stormlander</option>
+                <option>Valeman</option>
+                <option>Westerman</option>
+                <option>Wildling</option>
             </select>
         </div>
 
         <!-- Class Selection -->
         <div class="character-input-group">
             <label for="character-class">Class:</label>
-            <select id="character-class">
-                <option>Warrior</option>
-                <option>Rogue</option>
-                <option>Hunter</option>
+            <select id="character-class" aria-label="Character Class">
+                <option>Alchemist</option>
+                <option>Archer</option>
+                <option>Assassin</option>
                 <option>Bard</option>
+                <option>Cleric</option>
+                <option>Druid</option>
+                <option>Fighter</option>
+                <option>Hunter</option>
+                <option>Mage</option>
+                <option>Monk</option>
+                <option>Paladin</option>
+                <option>Priest</option>
+                <option>Ranger</option>
+                <option>Rogue</option>
+                <option>Sorcerer</option>
+                <option>Warlock</option>
+                <option>Warrior</option>
+                <option>Wizard</option>
             </select>
         </div>
 
         <!-- Background Selection -->
         <div class="character-input-group">
             <label for="character-background">Background:</label>
-            <select id="character-background">
-                <option>Soldier</option>
-                <option>Outlaw</option>
+            <select id="character-background" aria-label="Character Background">
+                <option>Acrobat</option>
+                <option>Alchemist</option>
+                <option>Artisan</option>
+                <option>Bard</option>
+                <option>Beggar</option>
+                <option>Blacksmith</option>
+                <option>Caravan Guard</option>
+                <option>Chef</option>
+                <option>Explorer</option>
+                <option>Farmer</option>
+                <option>Gladiator</option>
+                <option>Healer</option>
+                <option>Hunter</option>
+                <option>Knight</option>
                 <option>Merchant</option>
+                <option>Noble</option>
+                <option>Outlaw</option>
                 <option>Peasant</option>
+                <option>Priest</option>
+                <option>Scholar</option>
+                <option>Scout</option>
+                <option>Soldier</option>
+                <option>Spy</option>
+                <option>Thief</option>
+                <option>Wanderer</option>
+                <option>Warlord</option>
             </select>
         </div>
 
-        <!-- Character Summary -->
-        <div class="character-summary" id="character-summary">
-            <h3>Character Summary</h3>
-            <p>Name: <span id="summary-name">-</span></p>
-            <p>Race: <span id="summary-race">-</span></p>
-            <p>Class: <span id="summary-class">-</span></p>
-            <p>Background: <span id="summary-background">-</span></p>
-        </div>
-
         <!-- Start Adventure Button -->
-        <button id="create-character">Start Adventure</button>
+        <button id="create-character" aria-label="Start Adventure">Start Adventure</button>
     </div>
 
     <!-- Main Game Container -->
     <div class="game-container hidden" id="game-container">
         <div class="game-log" id="game-log"></div>
         <div class="input-container">
-            <input type="text" id="command-input" placeholder="Enter your command..." autofocus>
-            <button id="submit-command">Send</button>
+            <input type="text" id="command-input" placeholder="Enter your command..." autofocus aria-label="Game command input">
+            <button id="submit-command" aria-label="Send command">Send</button>
         </div>
     </div>
 
     <!-- Script files -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const titleTheme = document.getElementById("title-theme");
+            const enterButton = document.querySelector(".enter-button");
+
+            // Play the title theme on user interaction
+            function playTitleTheme() {
+                titleTheme.volume = 0.4;
+                titleTheme.play().catch((error) => {
+                    console.log("Autoplay blocked. Waiting for user interaction.");
+                });
+            }
+
+            // Ensure music plays on button click
+            enterButton.addEventListener("click", () => {
+                playTitleTheme();
+            });
+        });
+    </script>
     <script src="js/scene-engine.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
